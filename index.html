@@ -11,6 +11,12 @@
     #musica {
       display: none;
     }
+    
+    /* Estilo da seta ao ser clicada */
+    .arrow-clicked {
+      transform: scale(1.2);
+      transition: transform 0.2s;
+    }
   </style>
 </head>
 <body>
@@ -21,24 +27,26 @@
     <div class="slider">
       <img id="slide-image" src="foto1.jpeg" alt="Slide de Fotos">
       <button class="arrow-left" onclick="prevSlide()">&#8592;</button>
-      <button class="arrowright" onclick="nextSlide()">&#8594;</button>
+      <button class="arrow-right" onclick="nextSlide()">&#8594;</button>
     </div>
 
     <div class="player">
       <span class="song">Eu te amo</span>
       <div class="controls">
-        <button onclick="prevSlide(this)">
+        <!-- A navegação de slides está agora apenas aqui -->
+        <button onclick="prevSlide()">
           <img src="assets/seta.png" alt="Anterior" class="arrow-icon">
         </button>
         
-        <button onclick="togglePlay()" id="playPauseBtn"><img src="assets/play.png" alt="play" class="arrow-play">
+        <button onclick="togglePlay()" id="playPauseBtn">
+          <img src="assets/play.png" alt="play" class="arrow-play">
         </button>
         
-        <button onclick="nextSlide(this)">
-          <img src="assets/seta2.png" alt="Anterior" class="arrow-icon">
+        <button onclick="nextSlide()">
+          <img src="assets/seta2.png" alt="Próximo" class="arrow-icon">
         </button>
         
-          <audio id="musica">
+        <audio id="musica">
           <source src="Essa é a ultima volta.mp3" type="audio/mpeg">
           Seu navegador não suporta o elemento audio.
         </audio>
@@ -47,35 +55,57 @@
   </div>
 
   <script src="script.js"></script>
-  
+
   <script>
-    const imagens = ["foto1.jpeg", "foto2.jpeg", "foto3.jpeg"];
+    const imagens = ["foto1.jpeg", "foto2.jpeg", "foto3.jpeg", "foto4.jpeg", "foto5.jpeg"];
     let slideAtual = 0;
-  
+    const slideImage = document.getElementById("slide-image");
+    const audio = document.getElementById('musica');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    let isPlaying = false;
+
+    // Função para mostrar a imagem atual
     function mostrarSlide() {
-      document.getElementById("slide-image").src = imagens[slideAtual];
+      slideImage.src = imagens[slideAtual];
     }
-  
+
+    // Função para alternar play/pause
+    function togglePlay() {
+      if (isPlaying) {
+        audio.pause();
+        playPauseBtn.classList.remove('pause');
+        playPauseBtn.classList.add('play');
+      } else {
+        audio.play();
+        playPauseBtn.classList.remove('play');
+        playPauseBtn.classList.add('pause');
+      }
+      isPlaying = !isPlaying;
+    }
+
+    // Função para animação ao clicar nas setas
     function animateArrow(button) {
       button.classList.add("arrow-clicked");
       setTimeout(() => {
         button.classList.remove("arrow-clicked");
       }, 300);
     }
-  
-    function prevSlide(button) {
+
+    // Função para slide anterior
+    function prevSlide() {
       slideAtual = (slideAtual - 1 + imagens.length) % imagens.length;
       mostrarSlide();
-      animateArrow(button);
     }
-  
-    function nextSlide(button) {
+
+    // Função para próximo slide
+    function nextSlide() {
       slideAtual = (slideAtual + 1) % imagens.length;
       mostrarSlide();
-      animateArrow(button);
     }
+
+    // Iniciar o slider automaticamente
+    setInterval(nextSlide, 3000); // Mudança a cada 3 segundos
   </script>
-  
   
 </body>
 </html>
