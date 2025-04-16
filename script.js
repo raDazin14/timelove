@@ -4,8 +4,13 @@ const playPauseBtn = document.getElementById('playPauseBtn');
 let currentSlide = 0;
 
 const slides = [
-  'foto1.jpeg', 'foto2.jpeg', 'foto3.jpeg' // Adicione as imagens do seu slider
+  'foto1.jpeg', 'foto2.jpeg', 'foto3.jpeg', 'foto4.jpeg', 'foto5.jpeg',
+  'foto6.jpeg', 'foto7.jpeg', 'foto8.jpeg', 'foto9.jpeg', 'foto10.jpeg',
+  'foto11.jpeg', 'foto12.jpeg', 'foto13.jpeg', 'foto14.jpeg', 'foto15.jpeg',
+  'foto16.jpeg', 'foto17.jpeg', 'foto18.jpeg', 'foto19.jpeg', 'foto20.jpeg',
+  'foto21.jpeg', 'foto22.jpeg'
 ];
+
 
 const slideImage = document.getElementById('slide-image');
 
@@ -34,3 +39,4 @@ function togglePlay() {
   }
   isPlaying = !isPlaying;
 }
+

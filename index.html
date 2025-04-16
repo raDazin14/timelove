@@ -27,10 +27,18 @@
     <div class="player">
       <span class="song">Eu te amo</span>
       <div class="controls">
-        <button onclick="prevSlide()">⏮️</button>
-        <button onclick="togglePlay()" id="playPauseBtn">⏸️</button>
-        <button onclick="nextSlide()">⏭️</button>
-        <audio id="musica">
+        <button onclick="prevSlide(this)">
+          <img src="assets/seta.png" alt="Anterior" class="arrow-icon">
+        </button>
+        
+        <button onclick="togglePlay()" id="playPauseBtn"><img src="assets/play.png" alt="play" class="arrow-play">
+        </button>
+        
+        <button onclick="nextSlide(this)">
+          <img src="assets/seta2.png" alt="Anterior" class="arrow-icon">
+        </button>
+        
+          <audio id="musica">
           <source src="Essa é a ultima volta.mp3" type="audio/mpeg">
           Seu navegador não suporta o elemento audio.
         </audio>
@@ -39,6 +47,35 @@
   </div>
 
   <script src="script.js"></script>
+  
+  <script>
+    const imagens = ["foto1.jpeg", "foto2.jpeg", "foto3.jpeg"];
+    let slideAtual = 0;
+  
+    function mostrarSlide() {
+      document.getElementById("slide-image").src = imagens[slideAtual];
+    }
+  
+    function animateArrow(button) {
+      button.classList.add("arrow-clicked");
+      setTimeout(() => {
+        button.classList.remove("arrow-clicked");
+      }, 300);
+    }
+  
+    function prevSlide(button) {
+      slideAtual = (slideAtual - 1 + imagens.length) % imagens.length;
+      mostrarSlide();
+      animateArrow(button);
+    }
+  
+    function nextSlide(button) {
+      slideAtual = (slideAtual + 1) % imagens.length;
+      mostrarSlide();
+      animateArrow(button);
+    }
+  </script>
+  
   
 </body>
 </html>
