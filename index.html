@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Memories With You</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="shortcut icon" href="images/sd.ico" type="image/x-icon">
+  <style>
+    /* Esconde o player nativo */
+    #musica {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1 class="title">Memories</h1>
+    <h2 class="subtitle">With You</h2>
+
+    <div class="slider">
+      <img id="slide-image" src="foto1.jpeg" alt="Slide de Fotos">
+      <button class="arrow-left" onclick="prevSlide()">&#8592;</button>
+      <button class="arrowright" onclick="nextSlide()">&#8594;</button>
+    </div>
+
+    <div class="player">
+      <span class="song">Eu te amo</span>
+      <div class="controls">
+        <button onclick="prevSlide()">⏮️</button>
+        <button onclick="togglePlay()" id="playPauseBtn">⏸️</button>
+        <button onclick="nextSlide()">⏭️</button>
+        <audio id="musica">
+          <source src="Essa é a ultima volta.mp3" type="audio/mpeg">
+          Seu navegador não suporta o elemento audio.
+        </audio>
+      </div>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  
+</body>
+</html>
